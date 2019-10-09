@@ -42,8 +42,6 @@ objects:
     triggers: {}
 - apiVersion: v1
   kind: Service
-  volumes:
-    - ../stable/nginx.conf:/etc/nginx/nginx.conf
   metadata:
     labels:
       app: ${NAME}
@@ -54,6 +52,8 @@ objects:
       protocol: TCP
       targetPort: 8081
       name: http
+    volumes:
+      - ../stable/nginx.conf:/etc/nginx/nginx.conf
     selector:
       app: ${NAME}
       deploymentconfig: ${NAME}
