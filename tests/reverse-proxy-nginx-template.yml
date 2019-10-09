@@ -27,7 +27,7 @@ objects:
           deploymentconfig: ${NAME}
       spec:
         containers:
-        - image: triviusakakous/openshift-nginx:${NGINX_VERSION}
+        - image: twalter/openshift-nginx:${NGINX_VERSION}
           imagePullPolicy: Always
           name: nginx
           ports:
@@ -43,11 +43,11 @@ objects:
 - apiVersion: v1
   kind: Service
   metadata:
-    labels:
-      app: ${NAME}
-    name: ${NAME}
-  spec:
-    ports:
+      labels:
+          app: ${NAME}
+          name: ${NAME}
+      spec:
+      ports:
     - port: 8081
       protocol: TCP
       targetPort: 8081
@@ -55,6 +55,8 @@ objects:
     selector:
       app: ${NAME}
       deploymentconfig: ${NAME}
+  volumes:
+      - ../stable/nginx.conf:/etc/nginx/nginx.conf
 - apiVersion: v1
   kind: Route
   metadata:
