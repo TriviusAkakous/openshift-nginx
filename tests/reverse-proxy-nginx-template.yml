@@ -27,7 +27,7 @@ objects:
           deploymentconfig: ${NAME}
       spec:
         containers:
-        - image: triviusakakous/openshift-nginx:${NGINX_VERSION}
+        - image: twalter/openshift-nginx:${NGINX_VERSION}
           imagePullPolicy: Always
           name: nginx
           ports:
